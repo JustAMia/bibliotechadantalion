@@ -1,0 +1,56 @@
+---
+import Baselayout from "../layouts/baselayout.astro";
+
+import PrintFooter from "src/components/print-footer.astro";
+import PostFooter from "src/components/post-footer.astro";
+
+import Tags from "src/components/tags.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => {
+    const slug = post.data.postSlug; // all posts must have a slug or fail
+
+    return {
+      params: { slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { title, tags, pubDate, description } = post.data;
+const { Content } = await post.render();
+---
+
+<Baselayout>
+  <print-head>
+    <h1>The Coded Type</h1>
+    <h2>www.thecodedtype.com</h2>
+  </print-head>
+  <article>
+    <article-head>
+      <h1>{title}</h1>
+      <elt-meta
+        ><elt-date
+          >{
+            post.data.pubDate.toLocaleDateString("en-GB", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })
+          }</elt-date
+        >
+        <Tags allPostTags = {tags} />
+        </elt-meta>
+      <h2 class="text-none">{description}</h2>
+
+    </article-head>
+
+    <Content />
+    <PostFooter />
+  </article>
+  <PrintFooter />
+
+</Baselayout>

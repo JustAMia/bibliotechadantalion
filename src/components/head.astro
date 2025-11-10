@@ -1,0 +1,13 @@
+---
+const { style } = Astro.props
+console.log('style', style)
+
+import { BLOG_CONFIG } from "../../blog-config"
+---
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="The Coded Type Blog" />
+    <title>{BLOG_CONFIG.name}</title>
+</head>

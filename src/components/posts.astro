@@ -1,0 +1,42 @@
+---
+import Tags from "./tags.astro";
+
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
+
+const { postFilter = "all" } = Astro.props; 
+const posts = postFilter == "all" ? allPosts : allPosts.filter( post => post.data.tags.includes(postFilter) );
+
+posts.sort((a, b) => b.data.pubDate - a.data.pubDate);
+---
+<elt-all-posts>
+    {
+      posts.map(async (post) => {
+        // Mark the map callback as async
+        return (
+          <elt-post>
+            <elt-post-link>
+              <h2>
+                <a href={`${import.meta.env.BASE_URL}${post.data.postSlug}`}>{post.data.title}</a>{" "}
+                
+              </h2>
+              <elt-date>
+                {post.data.pubDate.toLocaleDateString("en-GB", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </elt-date>
+            </elt-post-link>
+            <div>
+            <p class="mh-0">{post.data.description}</p>
+            
+          </div>
+          <div>
+            <Tags allPostTags = {post.data.tags} />
+          </div>
+          </elt-post>
+        );
+      })
+    }
+  </elt-all-posts>

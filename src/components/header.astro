@@ -1,0 +1,13 @@
+---
+import { BLOG_CONFIG } from "../../blog-config"
+
+---
+<header class="container-lg centered pw-base">
+    <nav class="flex container-lg w-full">
+        <a class="ml-0" href=`${import.meta.env.BASE_URL}`>{BLOG_CONFIG.name}</a>
+        </a>
+        <a class="ml-auto" href="/rss.xml">RSS</a>
+        <a class="mr-0" href="/about">About</a>
+    </nav>
+</header>
+

@@ -1,0 +1,31 @@
+---
+import "../styles/____reset.css";
+import "../styles/___colors.css";
+import "../styles/___fonts.css";
+import "../styles/___vars.css";
+import "../styles/__typography.css";
+import "../styles/__utilities.css";
+import "../styles/_blocks.css";
+
+import "../styles/print.css";
+
+import "../styles/global.css";
+
+
+import Head from "../components/head.astro";
+
+import Header from "../components/header.astro"
+import Footer from "src/components/footer.astro";
+
+---
+<html lang="en">
+
+<Head />
+<body class="sans">
+    <Header />
+    <main class="container-lg centered pw-base">
+        <slot />
+    </main>
+    <Footer />
+</body>
+</html>
