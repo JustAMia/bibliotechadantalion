@@ -11,12 +11,15 @@ const tagFilters = [].concat( queryFilters?.tags || ["all"]);
 
 const postFilters = [].concat( queryFilters?.posts || [""] );
 
-const postsFilteredByTags = tagFilters.includes("all") ? allPosts : allPosts.filter( post => post.data.tags.some( el => {return tagFilters.includes(el)}));
+//const postsFilteredByTags = tagFilters.includes("all") ? allPosts : allPosts.filter( post => post.data.tags.some( el =>  tagFilters.includes(el)));
 
-const posts = postsFilteredByTags.filter( post => { 
+const posts = allPosts.filter( post =>
+  tagFilters.includes("all") || post.data.tags.some( tag => tagFilters.includes(tag))
+  )
+  .filter( post => { 
   const slug = post.data.postSlug || sanitizeString(post.data.title);
   return !postFilters.includes(slug);
-})
+  })
 
 posts.sort((a, b) => b.data.pubDate - a.data.pubDate);
 
