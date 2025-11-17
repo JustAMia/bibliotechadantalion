@@ -29,6 +29,7 @@ content:
       - name: body
         label: body
         type: rich-text
+        required: true
         
   
 
