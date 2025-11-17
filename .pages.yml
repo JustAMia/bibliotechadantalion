@@ -22,10 +22,6 @@ content:
         label: Tags
         type: object
         list: true
-        fields:
-          - name: tag
-            label: Tag
-            type: string
       - name: body
         label: Body
         type: rich-text
