@@ -1,5 +1,5 @@
 ---
-status: StatusTest
+status: published
 author: Iko
 title: Test New Post
 description: Post description
