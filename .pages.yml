@@ -46,7 +46,8 @@ content:
         default: 6
       - name: MENU
         label: Navigation menu
-        type: list
+        type: object
+        list: true
         fields:
           - name: label
             label: Label
