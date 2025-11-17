@@ -17,4 +17,9 @@ content:
         type: string
       - name: LANG
         label: Blog language
-        type: string
+          type: select
+          options:
+            - FR
+            - EN
+            - IT
+            - ES
