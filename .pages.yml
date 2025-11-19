@@ -69,6 +69,15 @@ content:
         label: Post Footer
         type: text
 
+  - name: postSuggestionHeading
+    label: "Poost Suggestion Heading"
+    type: file
+    path: src/data/post-suggestion-heading.mdx
+    fields:
+      - name: body
+        label: Poost Suggestion Heading
+        type: text
+
   - name: footer
     label: "Footer text"
     type: file
