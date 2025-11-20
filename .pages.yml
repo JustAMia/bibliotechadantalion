@@ -112,6 +112,12 @@ content:
         label: Blog language
         type: string
         default: EN
+      - name: STYLE
+        label: Fonst style
+        type: select
+        defaul: sans
+        options:
+            values: [ sans, serif, sans-and-serif, serif-and-sans ]
       - name: AUTHOR
         label: Author name
         type: string
