@@ -67,8 +67,8 @@ function remarkExtendImage () {
 
         visit(tree, 'image', function (node, index, parent) {
             const imageAlt = node.alt || '';
-            const imageTitle = node.title || '';
-            const imageUrl = `Image: ${node.url}` || '';
+            const imageTitle = `Image: ${node.title}` || '';
+            const imageUrl = node.url || '';
             
             let newNode;
 
