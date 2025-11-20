@@ -63,7 +63,7 @@ import { late } from "astro:schema";
                   )}
                     <post-meta>
                         <p class="mh-0">{post.data.description}</p>
-                        <Tags allPostTags = {post.data.tags} />
+                        <Tags postTitle = {post.data.title} allPostTags = {post.data.tags} />
                     </post-meta>
         
                 </div>
