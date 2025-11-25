@@ -165,6 +165,8 @@ content:
           - name: src
             label: Blog cover image
             type: image
+            options: 
+              media: OG_image
           - name: alt
             label: Blog Cover alt
             type: string
