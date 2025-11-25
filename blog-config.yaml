@@ -13,5 +13,5 @@ HOME_NB_POSTS: 6
 MENU:
   - label: RSS
     url: /rss.xml
-  - label: Google
-    url: http://www.google.com
+  - label: Archive
+    url: /archive/1
