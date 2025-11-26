@@ -1,8 +1,5 @@
 media:
-  - name: OG_image
-    input: src/content/media
-    output: /
-  - name: posts
+  - name: Media
     input: src/content/media
     output: ../media
 content:
@@ -58,7 +55,24 @@ content:
           - name: alt
             label: ALT
             type: string
-
+  - name: pages
+    label: Pages
+    type: collection
+    path: src/pages
+    filename: '{primary}.mdx'
+    view: [title]
+    subfolders: false
+    fields:
+        - name: title
+          label: Title
+          type: string
+          required: true
+        - name: body
+          label: Body
+          type: rich-text
+        - name: layout
+          hidden: true
+          default: '../layouts/pagelayout.astro'
   - name: home
     label: "Home intro text .mdx text"
     type: file
