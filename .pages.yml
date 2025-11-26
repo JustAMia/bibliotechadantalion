@@ -71,6 +71,7 @@ content:
         - name: body
           label: Body
           type: text
+          default: 'Images must be referenced as ![](../content/media/imagename)'
         - name: layout
           hidden: true
           default: '../layouts/pagelayout.astro'
