@@ -4,6 +4,7 @@ import Cover from "./cover.astro";
 
 const { hasCover=false, url, title='', titleTag = 'h1', description='', descriptionTag = 'h2', pubDate, tags=[], coverSrc='', coverAlt='', sectionHeaderContentClass='' } = Astro.props;
 
+console.log('Post URL in post-header', url)
 const Heading = titleTag;
 const Description = descriptionTag;
 
@@ -14,10 +15,7 @@ const readableDate = pubDate && pubDate.toLocaleDateString("en-GB", {
   day: "numeric",
 });
 
-
 import { sanitizeUrl } from '../js/sanitizeUrl';
-
-
 
 ---
 <header class="article-header">
