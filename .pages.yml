@@ -130,6 +130,7 @@ content:
       - name: BASE
         label: Blog base folder (leave empty if none)
         type: string
+        default: '/'
       - name: DESCRIPTION
         label: Blog description
         type: string
