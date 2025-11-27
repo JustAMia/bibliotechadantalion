@@ -1,5 +1,9 @@
 const createSanitizer = (base) => (url) => {
 
+    console.log("createSanitizer url", url)
+    console.log("createSanitizer base", base)
+
+
     if (!url || url.startsWith('http') || url.startsWith('mailto:')) return url;
 
     const cleanBase = base === '/' ? '' : base.replace(/\/$/, '');
