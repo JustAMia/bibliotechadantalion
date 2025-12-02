@@ -1,18 +1,12 @@
 ---
 import BaseLayout from "../layouts/baselayout.astro";
-import BlogrollFeed from "src/components/blogroll-feed.astro";
-import { CONFIG } from "@config";
-
-const urls2 = [ "https://www.explorersdesign.com/rss/", "https://slowlorispress.com/rss"]
-
-const urls3 = ["https://www.bastionland.com/feeds/posts/default", "https://thecodedtype.com/rss.xml"]
+import BlogrollFeed from "src/components//blogroll/blogroll-feed.astro";
 
 import { frontmatter } from "../data/blogroll.mdx";
-
-
 ---
 
 <BaseLayout>
   <h1>Blogroll</h1>
-  {frontmatter.urls && <BlogrollFeed urls = {frontmatter.urls} />}
+  <p>The BlogrollFeed component take as parameter an array of RSS urls</p>
+  {frontmatter.urls && <BlogrollFeed urls={frontmatter.urls} />}
 </BaseLayout>

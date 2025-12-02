@@ -1,7 +1,7 @@
 ---
 import Parser from 'rss-parser';
 
-import BlogRollItem from '../components/blogroll-item.astro';
+import BlogRollItem from './blogroll-item.astro';
 
 async function getRss(url: string) {
     const parser = new Parser();
@@ -19,10 +19,16 @@ const blogroll = [];
 
 for (const url of urls) {
     const rss = await getRss(url);
-    if (rss.success) {
-        rss.items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-        rss.items[0].blogTitle = rss.title;
-        blogroll.push(rss.items[0])
+
+    if (!rss.success || !Array.isArray(rss.items) || rss.items.length ===0) {continue;}
+    
+    rss.items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+    const topItem = rss.items[0];
+
+    if (topItem) {
+        topItem.blogTitle = rss.title || null;
+        blogroll.push(topItem)
     }
 }
 

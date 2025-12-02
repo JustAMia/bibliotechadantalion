@@ -5,8 +5,8 @@ if (!item) {
   throw new Error("RSS item is required in blogroll-item.astro");
 }
 
-const now = new Date();
-const pubDate = item.pubDate ? new Date(item.pubDate) : null;
+const now:Date = new Date();
+const pubDate:Date = item.pubDate ? new Date(item.pubDate) : now;
 const elapsedMs = now - pubDate; // in ms
 const elapsedMinutes = Math.floor(elapsedMs/1000/60);
 const elapsedHours = Math.floor(elapsedMinutes/60);
