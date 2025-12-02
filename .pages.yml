@@ -76,6 +76,7 @@ content:
         - name: layout
           hidden: true
           default: '../layouts/pagelayout.astro'
+          
   - name: home
     label: "Home intro, markdown text or HTML"
     type: file
