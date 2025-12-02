@@ -111,6 +111,12 @@ content:
         label: Footer
         type: text
 
+  - name: urls
+    label: "Blogroll"
+    path: src/data/blogroll.mdx
+    type: string
+    list: true
+
   - name: user-styles
     label: "User Styles"
     type: file
