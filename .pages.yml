@@ -85,7 +85,8 @@ content:
         type: text
         
   - name: postFooter
-    label: "Poost Footer text .mdx text"
+    label: "Post Footer"
+    description: "Markdown text or html"
     type: file
     path: src/data/post-footer.mdx
     fields:
