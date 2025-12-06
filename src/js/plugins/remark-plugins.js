@@ -73,32 +73,59 @@ function remarkExtendImage () {
               const imageAlt = imageNode.alt || '';
               
               let newNode;
-  
-              // Check if imageNode.url exists
-              if (!imageNode.url) {
+
+              // Helper function, return empty node
+              function returnEmptyNode() {
                 newNode={};
                 parent.children[index] = newNode;
                 return
-              } 
+              }
   
-              // Resolve the absolute path of the image
-              const absoluteImagePath = path.resolve(
-                // path.dirname(file.path), // Path of the .mdx file
-                `src/media/${imageNode.url}`            // Relative path of the image
-              );
-                  
-              // See if the file exists
-              if (!fs.existsSync(absoluteImagePath)) {
-                // 4. If not, log a warning and skip transformation
-                console.warn(
-                  `[remark-astro-images] Image not found at ${absoluteImagePath}`
+              // Check if imageNode.url exists, if not return tempty node
+              if (!imageNode.url) {
+                returnEmptyNode();
+              } 
+
+              const isRemoteImage = (url) => {
+                if (typeof url !=="string") return false;
+                return (
+                  /^https?:\/\//i.test(url) ||     // http:// or https://
+                  /^\/\//.test(url) ||             // protocol-relative
+                  /^data:/i.test(url) ||           // data URI
+                  /^blob:/i.test(url)              // blob://
                 );
-                newNode={};
-                parent.children[index] = newNode;
-                return; // Leave the node as a broken <img>
+              }
+
+              const isLocalImage = (url) => {
+                if (typeof url !=="string") return false;
+                const absoluteImagePath = path.resolve(
+                `src/media/${url}`            
+                );
+                return fs.existsSync(absoluteImagePath);
+              }
+
+              // Check the type of image remote, local, error
+              const imageType = (url) => {
+                if (!url || typeof url !== "string") return {success: false, type: 'error'};
+                // Check if it is remote
+                if (isRemoteImage(url)) {return {success: true, type: 'remote', src: url}};
+                if (isLocalImage(url)) {return {success: true, type: 'local', src: url}};
+                return {success: false, type: 'error'};
+              }
+              
+              const imageNodeType = imageType(imageNode.url);
+
+              if (!imageNodeType.success) {return returnEmptyNode()}
+
+              const generateImageNode = (imageNodeType) => {
+                if (imageNodeType.type == 'remote') return {type: 'mdxJsxAttribute', name: 'src', value: imageNodeType.src};
+                if (imageNodeType.type == 'local') return {type: 'mdxJsxAttribute', name: 'src', value: {type: 'mdxJsxAttributeValueExpression', value: `import('@media/${imageNodeType.src}')`, data: { estree: parseExpression(`import("@media/${imageNodeType.src}")`) }}};
+                return null;
               }
                 
-              const imageUrl = imageNode.url || '';
+              const newImageNode = generateImageNode(imageNodeType);
+
+              console.log('newImageNode', newImageNode)
 
                 newNode = {
                         type: 'mdxJsxFlowElement',
@@ -108,13 +135,7 @@ function remarkExtendImage () {
                             {
                             type: 'mdxJsxFlowElement',
                             name: 'Picture',
-                            attributes: [{type: 'mdxJsxAttribute', name: 'src', value: {
-                                type: 'mdxJsxAttributeValueExpression',
-                                value: `import('@media/${imageUrl}')`,
-                                data: {
-                                  estree: parseExpression(`import("@media/${imageUrl}")`)
-                                }
-                            }},
+                            attributes: [newImageNode,
                             {type: 'mdxJsxAttribute', name: 'alt', value: imageAlt},
                             {type: 'mdxJsxAttribute', name: 'formats', value: {
                                 type: 'mdxJsxAttributeValueExpression',
