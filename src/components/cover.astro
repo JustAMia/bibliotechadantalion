@@ -7,7 +7,7 @@ console.log("src file", src)
 
 import { CONFIG } from "@config";
 
-const mediaFolder = '../media/';
+const mediaFolder = 'media/';
 
 const images = import.meta.glob('../media/*.{png,jpg,jpeg,webp,svg}', {
   eager: true,
@@ -15,9 +15,8 @@ const images = import.meta.glob('../media/*.{png,jpg,jpeg,webp,svg}', {
 
 const imagesArray = Object.entries(images);
 
-const image = src ? imagesArray.filter(([key, val]) => key === `${mediaFolder}${src}`)[0][1].default : null;
+const image = src ? imagesArray.filter(([key, val]) => key.endsWith(`${mediaFolder}${src}`))[0][1].default : null;
 
-console.log('image', image)
 ---
 
 { src &&

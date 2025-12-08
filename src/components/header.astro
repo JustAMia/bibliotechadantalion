@@ -1,9 +1,9 @@
 ---
-import Picture from "astro/components/Picture.astro";
+import {Picture} from "astro:assets";
 
 import { CONFIG } from "@config";
 
-const mediaFolder = '../media/';
+const mediaFolder = 'media/';
 
 import { sanitizeUrl } from '../js/sanitizeUrl';
 
@@ -13,7 +13,7 @@ const images = import.meta.glob('../media/*.{png,jpg,jpeg,webp,svg}', {
 
 const imagesArray = Object.entries(images);
 
-const image = CONFIG.BANNER.src ? imagesArray.filter(([key, val]) => key === `${mediaFolder}${CONFIG.BANNER.src}`)[0][1].default : null;
+const image = CONFIG.BANNER.src ? imagesArray.filter(([key, val]) => key.endsWith(`${mediaFolder}${CONFIG.BANNER.src}`))[0][1].default : null;
 
 ---
 {CONFIG.BANNER.src && (<div class="">
