@@ -29,5 +29,5 @@ BANNER: # Blog banner, appears above the menu if any
   src: obr_banner.png  # Banner url (must be placed in the folder src/media)
   alt: Open Blog Revolution Banner # Banner image alt text, mandatory
 EDITOR:
-  GITHUBUSER: the-coded-type # Github user name
-  GITHUBREPO: open-blog-revolution # Github repo
+  GITHUBUSER: # Github user name
+  GITHUBREPO: # Github repo
