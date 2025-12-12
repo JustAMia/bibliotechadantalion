@@ -23,9 +23,14 @@ const dataCollection = import.meta.glob('../data/*.{mdx, md}', {
 
 const allData = Object.entries(dataCollection).map(([key, val]) => ({url: val.url, data: val.frontmatter}))
 
-const editUrl = (url) => `https://github.com/${gitHubUser}/${gitHubRepo}/edit/main/${url}`;
+const baseUrl = `https://github.com/${gitHubUser}/${gitHubRepo}`;
 
-const uploadUrl = `https://github.com/${gitHubUser}/${gitHubRepo}/upload/main/src/media`;
+const editUrl = (url) => `${baseUrl}/edit/main/${url}`;
+
+const uploadMediaUrl = `${baseUrl}/upload/main/src/media`;
+
+const uploadPostUrl = `${baseUrl}/upload/main/src/posts`;
+
 
 const regex = /\/([^\/]+)\.mdx$/;
 
@@ -35,9 +40,8 @@ const dataFilename = (url) => url.match(regex)[1] || null;
 <BaseLayout>
   <h1>Editor</h1>
   <ul>
-    <li><a href=`https://github.com/${gitHubUser}/${gitHubRepo}/new/main/src/content/posts?filename=new-post.mdx&value=---%0Atitle%3A%20Post%20name%0Adescription%3A%20Post%20description%0ApubDate%3A%202025-01-01%20%23%20update%20to%20the%20publishing%20date%0Astatus%3A%20draft%20%23%20set%20to%20pubished%20when%20to%20publish%0Aauthor%3A%20Author%0Atags%3A%0A%20%20-%20tag%20%23%20at%20least%20one%20tag%20is%20mandatory%20%0A%20%20-%20My%20tag%0A%20%20-%20My%20other%20tag%0Acover%3A%20%23%20post%20cover%20is%20optional%0A%20%20src%3A%20obr_large.png%20%0A%20%20title%3A%20Open%20Blog%20Revolution%20Banner%0A%20%20alt%3A%20Open%20Blog%20Revolution%20Banner%0A---
-`>Create new post</a></li>
-<li><a href=`https://github.com/${gitHubUser}/${gitHubRepo}/upload/main/src/content/posts`>Upload new posts</a></li>
+    <li><a  target="_blank" href=`${baseUrl}/new/main/src/content/posts?filename=new-post.mdx&value=---%0Atitle%3A%20Post%20name%0Adescription%3A%20Post%20description%0A%23%20update%20to%20the%20publishing%20date%0ApubDate%3A%202025-01-01%20%0A%23%20set%20to%20pubished%20when%20to%20publish%0Astatus%3A%20draft%20%0Aauthor%3A%20Author%0A%23%20at%20least%20one%20tag%20is%20mandatory%20%0Atags%3A%0A%20%20-%20tag%20%0A%20%20-%20My%20tag%0A%20%20-%20My%20other%20tag%0A%23%20post%20cover%20is%20optional%0Acover%3A%20%0A%20%20src%3A%20obr_large.png%20%0A%20%20title%3A%20Open%20Blog%20Revolution%20Banner%0A%20%20alt%3A%20Open%20Blog%20Revolution%20Banner%0A---`>Create new post</a></li>
+<li><a href={uploadPostUrl}>Upload new posts</a></li>
   </ul>
   {publishedPosts.length>0 &&
     <section>
@@ -76,7 +80,7 @@ const dataFilename = (url) => url.match(regex)[1] || null;
 <section>
   <h2>Media</h2>
   <ul>
-    <li><a href={uploadUrl} target="_blank">Upload files</a></li>
+    <li><a href={uploadMediaUrl} target="_blank">Upload files</a></li>
   </ul>
 </section>
 
