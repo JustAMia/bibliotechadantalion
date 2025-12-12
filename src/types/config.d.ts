@@ -37,5 +37,11 @@ declare module "@config" {
         label: string,
         url: string
       }[]
+
+      EDITOR: {
+        GITHUBUSER: string,
+        GITHUBREPO: string
+      }
+      
     };
   }
