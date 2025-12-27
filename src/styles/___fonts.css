@@ -29,8 +29,7 @@
 }
 
 .sans-and-serif h1, .sans-and-serif h2, .sans-and-serif h3, .sans-and-serif h4, .sans-and-serif h5, .sans-and-serif h6 {
-    font-family: var(--serif-stack);
-}
+    font-family: "Maurauder";
 
 .serif-and-sans, .serif-and-sans * {
     font-family: var(--serif-stack);
