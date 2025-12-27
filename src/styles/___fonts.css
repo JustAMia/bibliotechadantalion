@@ -8,6 +8,14 @@
     --serif-stack: 'Charter', 'Bitstream Charter', Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif;
     }
 
+@font-face {
+  font-family: 'Maurauder';
+  src: url('/fonts/Maurauder-Display-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .sans, .sans * {
       font-family: var(--sans-stack);
 }
@@ -29,6 +37,6 @@
 }
 
 .serif-and-sans h1, .serif-and-sans h2, .serif-and-sans h3, .serif-and-sans h4, .serif-and-sans h5, .serif-and-sans h6 {
-    font-family: var(--sans-stack);
+    font-family: "Maurauder";
 }
 
